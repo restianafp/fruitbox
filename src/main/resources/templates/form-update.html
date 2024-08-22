@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Spring Boot Application</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <style>
+        html,
+        body,
+        .intro {
+          height: 100%;
+        }
+
+        table td,
+        table th {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .mask-custom {
+          background: rgba(24, 24, 16, .2);
+          border-radius: 2em;
+          backdrop-filter: blur(25px);
+          border: 2px solid rgba(255, 255, 255, 0.05);
+          background-clip: padding-box;
+          box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+        }
+    </style>
+</head>
+<body>
+<section class="intro">
+    <div class="bg-image h-100" style="background-image: url(https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg?t=st=1715770654~exp=1715774254~hmac=127a267cc9a7f85d2321a91ea3a1206eccc6341245e4fb8fcf1df46ab5e0ee69&w=1060);">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card mask-custom">
+                            <div class="card-body">
+                                <div class="container mt-5">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h3 class="text-center">Ubah Data</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <form th:action="@{'/edit/' + ${fruit.id}}" method="post" th:object="${fruit}">
+                                                        <div class="form-group">
+                                                            <label for="fruitName">Nama Buah</label>
+                                                            <input type="text" class="form-control" id="fruitName" th:field="*{name}" placeholder="Enter fruit name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="latinName">Nama Latin</label>
+                                                            <input type="text" class="form-control" id="latinName"
+                                                                   placeholder="Enter Latin name" th:field="*{latinName}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="description">Deskripsi</label>
+                                                            <textarea class="form-control" id="description"
+                                                                      placeholder="Enter description"
+                                                                      th:field="*{desc}"></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="calories">Kalori (100g)</label>
+                                                            <input type="number" class="form-control" id="calories" placeholder="Enter calories" th:field="*{calories}">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Spring Boot Application</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <style>
+        html,
+        body,
+        .intro {
+          height: 100%;
+        }
+
+        table td,
+        table th {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .mask-custom {
+          background: rgba(24, 24, 16, .2);
+          border-radius: 2em;
+          backdrop-filter: blur(25px);
+          border: 2px solid rgba(255, 255, 255, 0.05);
+          background-clip: padding-box;
+          box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+        }
+    </style>
+</head>
+<body>
+<section class="intro">
+    <div class="bg-image h-100" style="background-image: url(https://www.freepik.com/free-vector/dark-gradient-background-with-copy-space_14731307.htm#query=gradient&position=11&from_view=keyword&track=sph&uuid=7b621106-de16-4ff8-b59d-8e7b3f60ed26);">
+        <div class="mask d-flex align-items-center h-100">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="card mask-custom">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless text-white mb-0">
+                                        <thead>
+                                        <a th:href="@{/input}" class="btn btn-primary">Tambah Buah</a>
+                                        <tr>
+                                            <th scope="col">NO</th>
+                                            <th scope="col">NAMA</th>
+                                            <th scope="col">NAMA LATIN</th>
+                                            <th scope="col">DESKRIPSI</th>
+                                            <th scope="col">KALORI(100GR)</th>
+                                            <th scope="col">AKSI</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="fruit, iterStat : ${fruits}">
+                                                <td th:text="${iterStat.count}"></td>
+                                                <td th:text="${fruit.name}"></td>
+                                                <td th:text="${fruit.latinName}"></td>
+                                                <td th:text="${fruit.desc}"></td>
+                                                <td th:text="${fruit.calories}"></td>
+                                                <td>
+                                                    <a th:href="@{/edit/{id}(id=${fruit.id})}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${fruit.id})}"><i class="fas fa-trash-alt"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
